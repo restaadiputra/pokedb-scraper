@@ -2,6 +2,8 @@ from collections import OrderedDict
 import requests
 import lxml.html as lh
 import re
+import os
+import sys
 
 # Add bracket if pokemon name has sub-name
 def str_bracket(word):
@@ -65,8 +67,20 @@ def getData(url, xpath):
 def clean_string(word):
   return word.lower().replace(' ', '').replace('.', '-')
 
-# iterate through all pokemon list and save img_filename
+# Iterate through all pokemon list and save img_filename
 def save_df_to_text(data_frame, filename, row_data):
   with open(filename, "w") as txt_file:
     for index, row in data_frame.iterrows():
       txt_file.write(str(index + 1).zfill(3) + ' ' + row[row_data].encode('utf-8').strip().lower() + "\n")
+
+# Checking if pokedex file is exists
+def check_if_file_exists(filename):
+  if not os.path.isfile(filename):
+	sys.exit('pokedex file is not exists. please run stats_scrape first to create it')
+
+
+# Checking if folder image container is exists
+def check_if_directory_exists(dirname):
+  access_rights = 0o755
+  if not os.path.exists(dirname):
+    os.mkdir(dirname, access_rights)

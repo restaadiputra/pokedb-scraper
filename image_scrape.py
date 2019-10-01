@@ -1,13 +1,21 @@
 #!/uar/bin/python
 
 import re, subprocess
-import os
+# import os
+# import sys
+import utils
+
+# Check if pokedex file is exists
+utils.check_if_file_exists('pokedex')
+# if not os.path.isfile('.pokedex'):
+# 	sys.exit('pokedex file is not exists. please run stats_scrape first to create it')
 
 # create directory
-path = 'image_scrape_result'
-access_rights = 0o755
-if not os.path.exists(path):
-  os.mkdir(path, access_rights)
+utils.check_if_directory_exists('image_scrape_result')
+# path = 'image_scrape_result'
+# access_rights = 0o755
+# if not os.path.exists(path):
+#   os.mkdir(path, access_rights)
 
 # get list of pokemon from pokedex file
 a_file = open('pokedex')
