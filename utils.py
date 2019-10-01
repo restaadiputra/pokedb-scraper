@@ -78,7 +78,6 @@ def check_if_file_exists(filename):
   if not os.path.isfile(filename):
 	sys.exit('pokedex file is not exists. please run stats_scrape first to create it')
 
-
 # Checking if folder image container is exists
 def check_if_directory_exists(dirname):
   access_rights = 0o755
